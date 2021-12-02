@@ -7,12 +7,8 @@
 </template>
 
 <script>
-import Header from '@/components/Header/Header'
-
 export default {
-  components: {
-    Header
-  }
+  name: 'Home'
 }
 </script>
 

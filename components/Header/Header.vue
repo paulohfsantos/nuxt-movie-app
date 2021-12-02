@@ -16,13 +16,8 @@
 </template>
 
 <script>
-import Icon from '@/components/Icon/Icon'
-
 export default {
   name: 'Header',
-  components: {
-    Icon
-  }
 }
 </script>
 <style lang="scss" scoped>
