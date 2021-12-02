@@ -8,7 +8,14 @@
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Home',
+
+  mounted() {
+    Promise.all([
+      this.$store.commit('resetMovies'),
+      this.$store.dispatch('getMovies'),
+    ])
+  }
 }
 </script>
 
