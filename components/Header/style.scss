@@ -1,0 +1,46 @@
+header {
+  background-color: $grafitte-bg;
+  padding: 10px;
+  color: $light-text;
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    .logo {
+      a {
+        display: flex;
+        text-decoration: none;
+        i {
+          margin-right: 10px;
+        }
+        span {
+          color: $light-text;
+        }
+      }
+    }
+
+    .links {
+      ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+
+        li {
+          padding: 0 .5rem;
+
+          a {
+            text-decoration: none;
+
+            &:hover {
+              color: $sucess-text;
+            }
+          }
+        }
+      }
+    }
+  }
+}
