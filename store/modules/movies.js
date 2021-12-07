@@ -22,6 +22,8 @@ const actions = {
       `${baseUrl}/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`
     )
     commit('setMovies', data)
+    // eslint-disable-next-line no-console
+    console.log(data)
   },
 }
 

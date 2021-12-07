@@ -1,0 +1,112 @@
+.home {
+  background-color: $grafitte-bg;
+  color: $light-text;
+
+  .hero {
+    height: 750px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: $success-bg;
+    background-image: url('./assets/warcraft-cover.jpg');
+    background-size: cover;
+    background-position: center;
+
+    h2 {
+      color: $light-text;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-right: 2rem;
+    }
+
+    a {
+      color: $light-text;
+      background-color: $success-bg;
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-decoration: none;
+      margin-right: 2rem;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+
+    .movie__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 2rem;
+      margin-bottom: 2rem;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      @media (max-width: 425px) {
+        grid-template-columns: 1fr;
+      }
+
+      .movie {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 5px;
+
+        .movie-img {
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+
+          &:hover {
+            p:nth-child(3) {
+              transform: translateY(0);
+            }
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+
+          p:nth-child(2) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: $success-bg;
+            color: #fff;
+            border-radius: 0 0 16px 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          }
+
+          p:nth-child(3) {
+            line-height: 1.2;
+            font-size: medium;
+            position: absolute;
+            bottom: 0;
+            height: 150px;
+            background-color: $success-bg;
+            padding: 12px;
+            color: #fff;
+            transform: translateY(100%);
+            transition: 0.3s ease-in-out all;
+          }
+        }
+      }
+    }
+  }
+}

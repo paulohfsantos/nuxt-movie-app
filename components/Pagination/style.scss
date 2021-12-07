@@ -1,0 +1,43 @@
+.pagination {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 10px;
+
+    .pagination-item {
+      display: inline-block;
+      margin: 0 3px;
+      border-radius: 50%;
+
+      button {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        border: none;
+        background: #fff;
+        cursor: pointer;
+        outline: none;
+        border-radius: 15px;
+        width: 25px;
+        height: 25px;
+
+        i {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      .active {
+        background-color: #5a9e92;
+        color: #ffffff;
+      }
+    }
+  }
+}
