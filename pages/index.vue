@@ -3,7 +3,7 @@
     <section class="home">
       <Header />
       <div class="hero">
-        <h2>Check out our movies session below</h2>
+        <h2>Now Streaming...</h2>
         <a href="#movie-grid"> Go to movies </a>
       </div>
       <div class="content">
