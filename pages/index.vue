@@ -24,14 +24,14 @@
               </div>
 
               <div class="info">
-                <p>
+                <p :title="movie.title">
                   {{ movie.title.slice(0, 25) }}
                   <span v-if="movie.title.length > 25">...</span>
                 </p>
 
                 <p>
                   release date:
-                  {{ releaseDate(movie.release_date) }}
+                  <span>{{ releaseDate(movie.release_date) }}</span>
                 </p>
                 <nuxt-link
                   :to="{
@@ -70,15 +70,6 @@ export default {
 
   computed: {
     ...mapGetters(['getMovies', 'getPagination']),
-    getPage() {
-      // eslint-disable-next-line no-console
-      console.log(this.$store.getters.getMovies.page);
-      if (this.$store.getters.getMovies.page !== undefined) {
-        return this.$store.getters.getMovies.page
-      } else {
-        return 1
-      }
-    },
     getTotalPages() {
       if (this.$store.getters.getMovies.total_pages !== undefined) {
         return this.$store.getters.getMovies.total_pages
