@@ -31,13 +31,7 @@
 
                 <p>
                   release date:
-                  {{
-                    new Date(movie.release_date).toLocaleDateString('en-us', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })
-                  }}
+                  {{ releaseDate(movie.release_date) }}
                 </p>
                 <nuxt-link
                   :to="{ name: 'movies-movieid', params: {movieid: movie.id} }"
@@ -68,6 +62,16 @@ export default {
       this.$store.commit('resetMovies'),
       this.$store.dispatch('getMovies'),
     ])
+  },
+
+  methods: {
+    releaseDate(movie) {
+      return new Date(movie).toLocaleDateString('en-us', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    }
   },
 }
 </script>

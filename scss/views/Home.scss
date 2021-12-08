@@ -59,7 +59,7 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
-        padding: 5px;
+        padding: 32px 15px;
 
         .movie-img {
           text-align: center;
@@ -98,10 +98,11 @@
             font-size: medium;
             position: absolute;
             bottom: 0;
-            height: 150px;
-            background-color: $success-bg;
+            background-color: #242424;
+            opacity: 1;
             padding: 12px;
-            color: #fff;
+            color: $light-text;
+            font-weight: bold;
             transform: translateY(100%);
             transition: 0.3s ease-in-out all;
           }
