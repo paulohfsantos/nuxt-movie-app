@@ -19,8 +19,8 @@
                   :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
                   :alt="movie.title"
                 />
-                  <p>{{ movie.vote_average }}</p>
-                  <p>{{ movie.overview }}</p>
+                <p>{{ movie.vote_average }}</p>
+                <p>{{ movie.overview }}</p>
               </div>
 
               <div class="info">
@@ -34,12 +34,23 @@
                   {{ releaseDate(movie.release_date) }}
                 </p>
                 <nuxt-link
-                  :to="{ name: 'movies-movieid', params: {movieid: movie.id} }"
+                  :to="{
+                    name: 'movies-movieid',
+                    params: { movieid: movie.id },
+                  }"
                 >
                   Get more info
                 </nuxt-link>
               </div>
             </div>
+          </div>
+          <div class="pagination">
+            <Pagination
+              :current-page="getPagination.page"
+              :total-pages="getTotalPages"
+              :per-page="15"
+              @pagechanged="pageChanged"
+            />
           </div>
         </div>
       </div>
@@ -53,8 +64,28 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Home',
 
+  data: () => ({
+    currentPage: 1,
+  }),
+
   computed: {
-    ...mapGetters(['getMovies']),
+    ...mapGetters(['getMovies', 'getPagination']),
+    getPage() {
+      // eslint-disable-next-line no-console
+      console.log(this.$store.getters.getMovies.page);
+      if (this.$store.getters.getMovies.page !== undefined) {
+        return this.$store.getters.getMovies.page
+      } else {
+        return 1
+      }
+    },
+    getTotalPages() {
+      if (this.$store.getters.getMovies.total_pages !== undefined) {
+        return this.$store.getters.getMovies.total_pages
+      } else {
+        return 1
+      }
+    },
   },
 
   mounted() {
@@ -64,6 +95,7 @@ export default {
     ])
   },
 
+
   methods: {
     releaseDate(movie) {
       return new Date(movie).toLocaleDateString('en-us', {
@@ -71,7 +103,13 @@ export default {
         month: 'long',
         day: 'numeric',
       })
-    }
+    },
+    pageChanged(page) {
+      this.$store.commit('setPagination', {
+        page
+      })
+      this.$store.dispatch('getMovies')
+    },
   },
 }
 </script>
