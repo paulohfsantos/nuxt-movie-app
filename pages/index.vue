@@ -7,6 +7,15 @@
         <a href="#movie-grid"> Go to movies </a>
       </div>
       <div class="content">
+        <div class="search-container">
+          <Search
+            v-model="queryString"
+            :show="queryString !== '' ? true : false"
+            placeholder="search your movie below..."
+            @search="searchMovies"
+            @clear="queryString = ''"
+          />
+        </div>
         <div class="container">
           <div id="movie-grid" class="movie__grid">
             <div
@@ -66,10 +75,12 @@ export default {
 
   data: () => ({
     currentPage: 1,
+    queryString: '',
   }),
 
   computed: {
-    ...mapGetters(['getMovies', 'getPagination']),
+    ...mapGetters(['getMovies', 'getPagination', 'getAllSearchedMovies']),
+
     getTotalPages() {
       if (this.$store.getters.getMovies.total_pages !== undefined) {
         return this.$store.getters.getMovies.total_pages
@@ -82,10 +93,15 @@ export default {
   mounted() {
     Promise.all([
       this.$store.commit('resetMovies'),
-      this.$store.dispatch('getMovies'),
-    ])
-  },
+    ]).then(() => {
+      if (this.queryString === '') {
+        this.$store.dispatch('getMovies')
+        return
+      }
 
+      this.searchMovies()
+    })
+  },
 
   methods: {
     releaseDate(movie) {
@@ -97,9 +113,15 @@ export default {
     },
     pageChanged(page) {
       this.$store.commit('setPagination', {
-        page
+        page,
       })
       this.$store.dispatch('getMovies')
+    },
+    searchMovies(query) {
+      console.log(query);
+      this.$store.commit('setSearchedMovies', query)
+      console.log('search', query);
+      this.$store.dispatch('getMoviesSearched', query);
     },
   },
 }
