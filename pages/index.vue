@@ -117,11 +117,11 @@ export default {
       })
       this.$store.dispatch('getMovies')
     },
-    searchMovies(query) {
-      console.log(query);
-      this.$store.commit('setSearchedMovies', query)
-      console.log('search', query);
-      this.$store.dispatch('getMoviesSearched', query);
+    searchMovies() {
+      // console.log(query);
+      // this.$store.commit('setSearchedMovies', query)
+      // console.log('search', query);
+      // this.$store.dispatch('getMoviesSearched', query);
     },
   },
 }

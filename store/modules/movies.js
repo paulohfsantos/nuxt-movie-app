@@ -8,7 +8,9 @@ const state = () => ({
     totalPages: 1,
     totalResults: 0,
   },
-  searchedMovies: [],
+  searchedMovies: {
+    search: '',
+  },
   adult: false,
 })
 
@@ -18,6 +20,7 @@ const getters = {
   getAllSearchedMovies: (state) => state.searchedMovies,
   getAdult: (state) => state.adult,
 }
+
 const mutations = {
   setMovies: (state, movies) => {
     state.movies = movies
@@ -34,9 +37,10 @@ const mutations = {
     state.searchedMovies = searchedMovies
   },
   resetSearchedMovies: (state) => {
-    state.searchedMovies = []
+    state.searchedMovies.search = ''
   },
 }
+
 const actions = {
   async getMovies({ state, commit }) {
     const { data } = await axios.get(
@@ -47,13 +51,20 @@ const actions = {
     console.log(data)
   },
   async getMoviesSearched({ state, commit }, query) {
+    // let { search } = state.searchedMovies
+    // let
     const { data } = await axios.get(
-      `${baseUrl}/search/movie?api_key=${apiKey}&language=en-US&query=${query}&page=${state.pagination.page}&include_adult=${state.adult}`
+      `${baseUrl}/search/movie?
+        api_key=${apiKey}
+        &language=en-US
+        &query=${query}
+        &page=${state.pagination.page}
+        &include_adult=${state.adult}`
     )
-    commit('setSearchedMovies', data)
+    commit('setMovies', data)
     // eslint-disable-next-line no-console
-    console.log(query)
-    console.log(data)
+    // console.log(query)
+    // console.log(data)
   },
 }
 
